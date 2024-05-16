@@ -94,7 +94,7 @@ final_link = st.text_input('Enter Chennal link')
 
 
 
-@st.experimental_singleton
+@st.experimental_memo
 def get_driver():
     return webdriver.Firefox()
 
