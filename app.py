@@ -8,6 +8,8 @@ from tqdm import tqdm
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 
+# pipreqs
+
 # all functions
 def scroller():
     for i in tqdm(range(0, 500, 1000)):
@@ -78,7 +80,6 @@ def download_csv_file(data):
         mime='text/csv'
     )
 
-
 link = 'https://www.youtube.com/'
 st.title('Scrap and Analyse')
 # final_link = 'https://www.youtube.com/@ashishchanchlanivines/videos'
@@ -92,9 +93,9 @@ final_link = st.text_input('Enter Chennal link')
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+# # # @st.experimental_memo  NOT WORK
 
 @st.experimental_singleton
-# # # @st.experimental_memo  NOT WORK
 def get_driver():
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
