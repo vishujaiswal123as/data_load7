@@ -91,21 +91,28 @@ final_link = st.text_input('Enter Chennal link')
 
 
 # import streamlit as st
+import streamlit as st
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
-
-@st.experimental_memo
+@st.experimental_singleton
 def get_driver():
-    return webdriver.Firefox()
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 options = Options()
 options.add_argument('--disable-gpu')
 options.add_argument('--headless')
 
 driver = get_driver()
-driver.get('http://example.com')
+#driver.get('http://example.com')
 
 st.code(driver.page_source)
+
+
+
 
 # ttt.sleep(20)
 if final_link:
