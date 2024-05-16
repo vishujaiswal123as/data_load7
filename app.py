@@ -109,7 +109,16 @@ options.add_argument('--headless')
 driver = get_driver()
 #driver.get('http://example.com')
 
-st.code(driver.page_source)
+def CiteParser(content):
+    soup = BeautifulSoup(content)
+    #print soup
+    print "---> site #: ",len(soup('cite'))
+    result = []
+    for cite in soup.find_all('cite'):
+        if cite.string is not None:
+            result.append(cite.string.split('/'))
+            print cite
+    return result
 
 
 
@@ -124,6 +133,7 @@ if final_link:
         scrol = scroller()
         if scrol == 'end':
             st.title('Almost Done')
+        
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             data_for_download=data_scrape(soup)
             # download='D:\web_scraping\Youtube_gfg.csv'
