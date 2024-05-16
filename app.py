@@ -7,6 +7,10 @@ import time as ttt
 from tqdm import tqdm
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
+# from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 # all functions
 def scroller():
@@ -88,10 +92,7 @@ final_link = st.text_input('Enter Chennal link')
 
 # import streamlit as st
 
-# from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 @st.experimental_singleton
 def get_driver():
