@@ -7,10 +7,6 @@ import time as ttt
 from tqdm import tqdm
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
-# from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 # all functions
 def scroller():
@@ -91,14 +87,14 @@ final_link = st.text_input('Enter Chennal link')
 
 
 # import streamlit as st
-import streamlit as st
 
-from selenium import webdriver
+# from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-@st.experimental_memo
+@st.experimental_singleton
+# # # @st.experimental_memo  NOT WORK
 def get_driver():
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
@@ -107,21 +103,9 @@ options.add_argument('--disable-gpu')
 options.add_argument('--headless')
 
 driver = get_driver()
-#driver.get('http://example.com')
+driver.get('http://example.com')
 
-def CiteParser(content):
-    soup = BeautifulSoup(content)
-    #print soup
-    print "---> site #: ",len(soup('cite'))
-    result = []
-    for cite in soup.find_all('cite'):
-        if cite.string is not None:
-            result.append(cite.string.split('/'))
-            print cite
-    return result
-
-
-
+st.code(driver.page_source)
 
 # ttt.sleep(20)
 if final_link:
@@ -133,7 +117,6 @@ if final_link:
         scrol = scroller()
         if scrol == 'end':
             st.title('Almost Done')
-        
             soup = BeautifulSoup(driver.page_source, 'html.parser')
             data_for_download=data_scrape(soup)
             # download='D:\web_scraping\Youtube_gfg.csv'
