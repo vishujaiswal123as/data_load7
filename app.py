@@ -96,7 +96,7 @@ final_link = st.text_input('Enter Chennal link')
 
 @st.experimental_singleton
 def get_driver():
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    return webdriver.Firefox()
 
 options = Options()
 options.add_argument('--disable-gpu')
