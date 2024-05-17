@@ -8,11 +8,10 @@ from tqdm import tqdm
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 
-# pipreqs
 
 # all functions
 def scroller():
-    for i in tqdm(range(0, 500, 1000)):
+    for i in tqdm(range(0, 50000, 1000)):
         driver.execute_script("window.scrollTo(0, " + str(i) + ")")
         driver.execute_script("(0,"+str(i)+")")
         ttt.sleep(.1)
@@ -51,11 +50,6 @@ def data_scrape(soups):
         except:
             thumbnail = ''
         data1.append([title, views, time, thumbnail, video_link])
-
-    # print(data)
-    # data2 = pd.DataFrame(
-    #     data1, columns=['title', 'views', 'time', 'thumbnail', 'video_link'])
-    # data2.to_csv('Youtube_gfg.csv', index=False)
     return data1
 
 def download_csv_file(data):
@@ -80,16 +74,15 @@ def download_csv_file(data):
         mime='text/csv'
     )
 
+#############################################################################################
+
 link = 'https://www.youtube.com/'
 st.title('Scrap and Analyse')
 # final_link = 'https://www.youtube.com/@ashishchanchlanivines/videos'
-
 final_link = st.text_input('Enter Chennal link')
 
 
-# import streamlit as st
 
-# from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -104,11 +97,8 @@ options.add_argument('--disable-gpu')
 options.add_argument('--headless')
 
 driver = get_driver()
-driver.get('http://example.com')
 
-st.code(driver.page_source)
 
-# ttt.sleep(20)
 if final_link:
     but1 = st.button('Scrap Dataset')
     if but1:
